@@ -48,8 +48,8 @@
 					$atts = wp_parse_args(
 								$atts,
 								array(
-									'width' => '100%', 
-									'height' => '100%',
+									'width'       => '100%', 
+									'height'      => '100%',
 									'frameborder' => 0,
 									'allowfullscreen',
 								)
@@ -66,7 +66,9 @@
 					return sprintf( '<iframe src="https://www.youtube.com/embed/%s" %s></iframe>', $vid, trim( $a ) );
 				}
 			}
+	
 		}
+	
 	}
 
 	if( ! function_exists( 'yp_iframe' ) ) {

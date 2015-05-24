@@ -1,32 +1,35 @@
 (function($){
 	
 	
-	function initialize_field( $el, $version ) {
-
+	function initialize_field( $el ) {
+		
 		$el.find('.acf-youtubepicker-field').each(function() {
-			
+					
 			var self     = $(this);
-			var id       = self.attr('id');
 			var multiple = 1 === parseInt(self.data('multiple')||0, 10);
-			var holder   = $('#'+id+'-holder > .inner');
-			var input    = self.youtubepicker({ channel : self.data('channel')||'' });
+			var holder   = $('#'+self.attr('id')+'-holder > .inner');
+			var input    = self.youtubepicker(
+								{'API_KEY' : self.data('api-key')}, 
+								self.data('options')||{}
+							);
+			
+			var deleteBtn = '<a href="#" class="acf-button-delete ir">remove</a></li>';
+			if( self.data('pro') ) {
+				deleteBtn = '<a href="#" class="acf-button-delete acf-icon"><i class="acf-sprite-delete"></i></a>';
+			}
 			
 			input.on('itemSelected', function(e, data){
-				var field = data.clone;
-				var cur   = JSON.stringify({ title : data.title, vid : data.vid, duration : data.duration });
-				var name  = field.attr('name') + '[]';
-				var item  = '<div class="thumbnail">' +
+				var field   = data.clone;
+				var current = JSON.stringify({ title : data.title, vid : data.vid });
+				var name    = field.attr('name') + '[]';
+				var item    = '<div class="thumbnail">' +
 								'<input type="hidden" name="'+name+'">' + 
 								'<div class="inner clearfix">' + 
 									'<img src="http://i.ytimg.com/vi/'+data.vid+'/default.jpg" alt="'+data.title+'">' + 
 								'</div>' +
 								'<div class="hover">' +
 									'<ul class="bl">' +
-										'<li>' +
-											( 4 === $version ? 
-												'<a href="#" class="acf-button-delete ir">remove</a></li>' : 
-												'<a href="#" class="acf-button-delete acf-icon"><i class="acf-sprite-delete"></i></a>' ) +
-										'</li>' +
+										'<li>' + deleteBtn + '</li>' +
 									'</ul>' +
 								'</div>' +
 							'</div>';
@@ -36,7 +39,7 @@
 				}
 				
 				holder.append(item);
-				holder.find('input[name="'+name+'"]:last').val(cur);
+				holder.find('input[name="'+name+'"]:last').val(current);
 
 			});
 			
@@ -61,7 +64,6 @@
 			});
 
 		});
-		
 	}
 	
 	
@@ -86,7 +88,7 @@
 			// search $el for fields of type 'youtubepicker'
 			acf.get_fields({ type : 'youtubepicker'}, $el).each(function(){
 				
-				initialize_field( $(this), 5 );
+				initialize_field( $(this) );
 				
 			});
 			
@@ -115,7 +117,7 @@
 			
 			$(postbox).find('.field[data-field_type="youtubepicker"]').each(function(){
 				
-				initialize_field( $(this), 4 );
+				initialize_field( $(this) );
 				
 			});
 		

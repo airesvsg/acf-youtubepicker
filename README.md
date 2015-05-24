@@ -2,7 +2,7 @@ ACF YouTube Picker Field
 ================
 Search and select videos on YouTube without leaving the page.
 
-![ACF YouTube Picker Field](http://www.airesgoncalves.com.br/youtubepicker/acf-youtubepicker.png)
+![ACF YouTube Picker Field](http://www.airesgoncalves.com.br/youtubepicker/acf-youtubepicker-v2.png)
 
 Compatibility
 ================
@@ -22,7 +22,7 @@ Retrieving data
 #### Single
 ```php
 // how to display data
-$video = get_field( 'youtube_video_single' );
+$video = get_field( 'youtube_single_video' );
 
 if( $video ) {
   echo '<h1>' . $video['title'] . '</h1>';
@@ -31,7 +31,7 @@ if( $video ) {
 ```
 
 ```php
-$video = get_field('youtube_video_single');
+$video = get_field('youtube_single_video');
 
 print_r( $video );
 
@@ -40,12 +40,6 @@ Array
 (
   [title] => Rio 2016
   [vid] => Z00jjc-WtZI
-  [duration] => Array
-      (
-          [hours] => 00
-          [minutes] => 02
-          [seconds] => 24
-      )
   [thumbs] => Array
       (
           [default] => Array
@@ -91,7 +85,7 @@ Array
 #### Multiple
 ```php
 // how to display data
-$videos = get_field( 'youtube_videos_multiple' );
+$videos = get_field( 'youtube_multiple_videos' );
 
 if( $videos ) {
   foreach( $videos as $v ) {
@@ -102,7 +96,7 @@ if( $videos ) {
 ```
 
 ```php
-$videos = get_field('youtube_videos_multiple');
+$videos = get_field('youtube_multiple_videos');
 
 print_r( $videos );
 
@@ -113,12 +107,6 @@ Array
     (
         [title] => Rio 2016
         [vid] => Z00jjc-WtZI
-        [duration] => Array
-            (
-                [hours] => 00
-                [minutes] => 02
-                [seconds] => 24
-            )
         [thumbs] => Array
             (
                 [default] => Array
