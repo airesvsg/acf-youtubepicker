@@ -52,18 +52,28 @@ class acf_field_youtubepicker extends acf_field {
 		*/
 		
 		$this->defaults = array(
-			'multiple'        => false,
-			'channelType'     => 'any',
-			'order'           => 'relevance',
-			'safeSearch'      => 'none',
-			'videoCaption'    => 'any',
-			'videoDefinition' => 'any',
-			'videoDimension'  => 'any',
-			'videoDuration'   => 'any',
-			'videoEmbeddable' => 'true',
-			'videoLicense'    => 'any',
-			'videoSyndicated' => 'any',
-			'videoType'       => 'any',
+			'api_key'           => 'AIzaSyAuHQVhEmD4m2AXL6TvADwZIxZjNogVRF0',
+			'multiple'          => false,
+			'channelType'       => 'any',
+			'order'             => 'relevance',
+			'safeSearch'        => 'none',
+			'videoCaption'      => 'any',
+			'videoDefinition'   => 'any',
+			'videoDimension'    => 'any',
+			'videoDuration'     => 'any',
+			'videoEmbeddable'   => 'true',
+			'videoLicense'      => 'any',
+			'videoSyndicated'   => 'any',
+			'videoType'         => 'any',
+			'channelId'         => '',
+			'eventType'         => '',
+			'regionCode'        => '',
+			'topicId'           => '',
+			'videoCategoryId'   => '',
+			'maxResults'        => '',
+			'relatedVideoId'    => '',
+			'relevanceLanguage' => '',
+			'answerOptions'     => array( 'vid', 'title', 'thumbs', 'iframe', 'url' ),
 		);
 		
 		
@@ -127,6 +137,23 @@ class acf_field_youtubepicker extends acf_field {
 				1 => __('Show', 'acf-youtubepicker'),
 				0 => __('Hide', 'acf-youtubepicker'),
 			)
+		));
+
+		acf_render_field_setting( $field, array(
+			'label'   => __('Answer Options','acf-youtubepicker'),
+			'type'    => 'checkbox',
+			'name'    => 'answerOptions',
+			'layout' => 'horizontal',
+			'wrapper' => array( 
+				'class' => 'field_advanced' 
+			),
+			'choices'	=>	array(
+				'title'  => __('Title', 'acf-youtubepicker'),
+				'vid'    => __('Video ID', 'acf-youtubepicker'),
+				'thumbs' => __('Video thumbnails', 'acf-youtubepicker'),
+				'iframe' => __('Embed Code', 'acf-youtubepicker'),
+				'url'    => __('Video URL', 'acf-youtubepicker'),
+			),
 		));
 
 		acf_render_field_setting( $field, array(
@@ -522,16 +549,26 @@ class acf_field_youtubepicker extends acf_field {
 	private function _format_value( $value, $post_id = null, $field = null, $format = null ) {
 		$data = array();
 		if( is_array( $value ) && count( $value ) > 0 ) {
+			$answer_options = $field['answerOptions'];
+			if( ! is_array( $answer_options) || count( $answer_options ) <= 0 ) {
+				$answer_options = $this->defaults['answerOptions'];
+			}
 			foreach( $value as $k => $v ) {
 				if( $v && ( $v = json_decode( $v, true ) ) ) {
 					if( 'api' === $format ) {
 						$v = array_merge(
 							$v, 
-							array( 
+							array(
+								'url'    => youtubepicker::url( $v['vid'] ),
 								'thumbs' => youtubepicker::thumbs( $v['vid'] ),
-								'iframe' => html_entity_decode( youtubepicker::iframe( $v['vid'] ) )
+								'iframe' => html_entity_decode( youtubepicker::iframe( $v['vid'] ) ),
 							)
 						);
+						foreach( $this->defaults['answerOptions'] as $default ) {
+							if ( ! in_array( $default, $answer_options ) ) {
+								unset( $v[$default] );
+							}
+						}
 						if( ! $field['multiple'] ) {
 							$data = $v;
 						}else{

@@ -29,20 +29,30 @@ class acf_field_youtubepicker extends acf_field {
 		$this->label    = __('YouTube Picker');
 		$this->category = __("jQuery",'acf'); // Basic, Content, Choice, etc
 		$this->defaults = array(
-			'multiple'        => false,
-			'channelType'     => 'any',
-			'order'           => 'relevance',
-			'safeSearch'      => 'none',
-			'videoCaption'    => 'any',
-			'videoDefinition' => 'any',
-			'videoDimension'  => 'any',
-			'videoDuration'   => 'any',
-			'videoEmbeddable' => 'true',
-			'videoLicense'    => 'any',
-			'videoSyndicated' => 'any',
-			'videoType'       => 'any',
+			'api_key'           => 'AIzaSyAuHQVhEmD4m2AXL6TvADwZIxZjNogVRF0',
+			'multiple'          => false,
+			'channelType'       => 'any',
+			'order'             => 'relevance',
+			'safeSearch'        => 'none',
+			'videoCaption'      => 'any',
+			'videoDefinition'   => 'any',
+			'videoDimension'    => 'any',
+			'videoDuration'     => 'any',
+			'videoEmbeddable'   => 'true',
+			'videoLicense'      => 'any',
+			'videoSyndicated'   => 'any',
+			'videoType'         => 'any',
+			'channelId'         => '',
+			'eventType'         => '',
+			'regionCode'        => '',
+			'topicId'           => '',
+			'videoCategoryId'   => '',
+			'maxResults'        => '',
+			'relatedVideoId'    => '',
+			'relevanceLanguage' => '',
+			'answerOptions'     => array( 'vid', 'title', 'thumbs', 'iframe', 'url' ),
 		);
-		
+
 		// do not delete!
     	parent::__construct();
     	
@@ -130,6 +140,31 @@ class acf_field_youtubepicker extends acf_field {
 				1 => __('Show', 'acf-youtubepicker'),
 				0 => __('Hide', 'acf-youtubepicker'),
 			)
+		));
+		
+		?>
+	</td>
+</tr>
+
+<tr class="field_option field_option_<?php echo $this->name; ?> field_advanced">
+	<td class="label">
+		<label><?php _e("Answer Options",'acf-youtubepicker'); ?></label>
+	</td>
+	<td>
+		<?php
+		
+		do_action('acf/create_field', array(
+			'type'		=>	'checkbox',
+			'name'		=>	'fields['.$key.'][answerOptions]',
+			'value'		=>	$field['answerOptions'],
+			'layout'	=>	'horizontal',
+			'choices'	=>	array(
+				'title'  => __('Title', 'acf-youtubepicker'),
+				'vid'    => __('Video ID', 'acf-youtubepicker'),
+				'thumbs' => __('Video thumbnails', 'acf-youtubepicker'),
+				'iframe' => __('Embed Code', 'acf-youtubepicker'),
+				'url'    => __('Video URL', 'acf-youtubepicker'),
+			),
 		));
 		
 		?>
@@ -694,16 +729,26 @@ class acf_field_youtubepicker extends acf_field {
 	private function _format_value( $value, $post_id, $field, $format = null ) {
 		$data = array();
 		if( is_array( $value ) && count( $value ) > 0 ) {
+			$answer_options = $field['answerOptions'];
+			if( ! is_array( $answer_options) || count( $answer_options ) <= 0 ) {
+				$answer_options = $this->defaults['answerOptions'];
+			}
 			foreach( $value as $k => $v ) {
 				if( $v && ( $v = json_decode( $v, true ) ) ) {
 					if( 'api' === $format ) {
 						$v = array_merge(
 							$v, 
 							array( 
+								'url'    => youtubepicker::url( $v['vid'] ),
 								'thumbs' => youtubepicker::thumbs( $v['vid'] ),
-								'iframe' => html_entity_decode( youtubepicker::iframe( $v['vid'] ) )
+								'iframe' => html_entity_decode( youtubepicker::iframe( $v['vid'] ) ),
 							)
 						);
+						foreach( $this->defaults['answerOptions'] as $default ) {
+							if ( ! in_array( $default, $answer_options ) ) {
+								unset( $v[$default] );
+							}
+						}
 						if( ! $field['multiple'] ) {
 							$data = $v;
 						}else{

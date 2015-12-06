@@ -66,6 +66,12 @@
 					return sprintf( '<iframe src="https://www.youtube.com/embed/%s" %s></iframe>', $vid, trim( $a ) );
 				}
 			}
+
+			public static function url( $vid ) {
+				if ( $vid = self::is_vid( $vid ) ) {
+					return sprintf( 'https://www.youtube.com/watch?v=%s', $vid );
+				}
+			}
 	
 		}
 	

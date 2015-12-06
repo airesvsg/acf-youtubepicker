@@ -40,6 +40,7 @@ Array
 (
   [title] => Rio 2016
   [vid] => Z00jjc-WtZI
+  [url] => https://www.youtube.com/watch?v=Z00jjc-WtZI
   [thumbs] => Array
       (
           [default] => Array
@@ -107,6 +108,7 @@ Array
     (
         [title] => Rio 2016
         [vid] => Z00jjc-WtZI
+        [url] => https://www.youtube.com/watch?v=Z00jjc-WtZI
         [thumbs] => Array
             (
                 [default] => Array
