@@ -72,6 +72,30 @@
 					return sprintf( 'https://www.youtube.com/watch?v=%s', $vid );
 				}
 			}
+
+			// https://wordpress.org/support/topic/time-9#post-7213085
+			public static function duration( $vid, $apikey ) {
+				$duration = null;
+				if( class_exists( 'DateTime') && class_exists( 'DateInterval' ) && ( $vid = self::is_vid( $vid ) ) ) {
+					if ( false === ( $duration = get_transient( 'yp_duration_'.$vid ) ) ) {
+						$url  = sprintf( 'https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=%s&key=%s', $vid, $apikey );
+						$data = file_get_contents( $url );
+						if ( $data ) {
+							$data = json_decode( $data, true );
+							if( is_array( $data ) && count( $data) > 0 ) {
+								$duration = $data['items'][0]['contentDetails']['duration'];
+
+								$date = new DateTime('2000-01-01');
+								$date->add(new DateInterval($duration));
+								$duration = $date->format('H:i:s');
+
+								set_transient( 'yp_duration_'.$vid, $duration, YEAR_IN_SECONDS );
+							}							
+						}
+					}
+				}
+				return $duration;
+			}
 	
 		}
 	

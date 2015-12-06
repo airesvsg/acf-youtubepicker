@@ -143,16 +143,17 @@ class acf_field_youtubepicker extends acf_field {
 			'label'   => __('Answer Options','acf-youtubepicker'),
 			'type'    => 'checkbox',
 			'name'    => 'answerOptions',
-			'layout' => 'horizontal',
+			'layout'  => 'horizontal',
 			'wrapper' => array( 
 				'class' => 'field_advanced' 
 			),
-			'choices'	=>	array(
-				'title'  => __('Title', 'acf-youtubepicker'),
-				'vid'    => __('Video ID', 'acf-youtubepicker'),
-				'thumbs' => __('Video thumbnails', 'acf-youtubepicker'),
-				'iframe' => __('Embed Code', 'acf-youtubepicker'),
-				'url'    => __('Video URL', 'acf-youtubepicker'),
+			'choices' => array(
+				'title'    => __('Title', 'acf-youtubepicker'),
+				'vid'      => __('Video ID', 'acf-youtubepicker'),
+				'url'      => __('Video URL', 'acf-youtubepicker'),
+				'thumbs'   => __('Video thumbnails', 'acf-youtubepicker'),
+				'duration' => __('Duration', 'acf-youtubepicker'),
+				'iframe'   => __('Embed Code', 'acf-youtubepicker'),
 			),
 		));
 
@@ -556,19 +557,30 @@ class acf_field_youtubepicker extends acf_field {
 			foreach( $value as $k => $v ) {
 				if( $v && ( $v = json_decode( $v, true ) ) ) {
 					if( 'api' === $format ) {
-						$v = array_merge(
-							$v, 
-							array(
-								'url'    => youtubepicker::url( $v['vid'] ),
-								'thumbs' => youtubepicker::thumbs( $v['vid'] ),
-								'iframe' => html_entity_decode( youtubepicker::iframe( $v['vid'] ) ),
-							)
-						);
-						foreach( $this->defaults['answerOptions'] as $default ) {
-							if ( ! in_array( $default, $answer_options ) ) {
-								unset( $v[$default] );
-							}
+						if( in_array( 'url', $answer_options ) ) {
+							$v['url'] = youtubepicker::url( $v['vid'] );
 						}
+						
+						if( in_array( 'duration', $answer_options ) ) {
+							$v['duration'] = youtubepicker::duration( $v['vid'], $field['api_key'] );
+						}
+
+						if( in_array( 'thumbs', $answer_options ) ) {
+							$v['thumbs'] = youtubepicker::thumbs( $v['vid'] );
+						}
+
+						if( in_array( 'iframe', $answer_options ) ) {
+							$v['iframe'] = html_entity_decode( youtubepicker::iframe( $v['vid'] ) );
+						}
+						
+						if( ! in_array( 'title', $answer_options ) ) {
+							unset( $v['title'] );
+						}
+
+						if( ! in_array( 'vid', $answer_options ) ) {
+							unset( $v['vid'] );
+						}
+
 						if( ! $field['multiple'] ) {
 							$data = $v;
 						}else{
