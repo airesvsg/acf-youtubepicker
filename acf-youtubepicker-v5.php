@@ -430,7 +430,7 @@ class acf_field_youtubepicker extends acf_field {
 		$options['type'] = 'video';
 
 		?>
-		<input type="text" id="<?php echo esc_attr( $field['key'] ); ?>" name="<?php echo esc_attr( $field['name'] ); ?>" class="acf-<?php echo esc_attr( $this->name ); ?>-field" data-pro="true" data-multiple="<?php echo esc_attr( $field['multiple'] ); ?>"  data-api-key="<?php echo $field['api_key']; ?>" data-options="<?php echo json_encode( $options ); ?>">
+		<input type="text" id="<?php echo esc_attr( $field['key'] ); ?>" name="<?php echo esc_attr( $field['name'] ); ?>" data-name="<?php echo esc_attr( $field['name'] ); ?>" class="acf-<?php echo esc_attr( $this->name ); ?>-field" data-pro="true" data-multiple="<?php echo esc_attr( $field['multiple'] ); ?>"  data-api-key="<?php echo $field['api_key']; ?>" data-options="<?php echo json_encode( $options ); ?>">
 		<div class="acf-<?php echo esc_attr($this->name); ?>">		
 			<div id="<?php echo esc_attr($field['key']); ?>-holder" class="thumbnails<?php echo ($field['multiple'] ? ' multiple' : ''); ?>">
 				<div class="inner clearfix ui-sortable">

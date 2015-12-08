@@ -21,7 +21,7 @@
 			input.on('itemSelected', function(e, data){
 				var field   = data.clone;
 				var current = JSON.stringify({ title : data.title, vid : data.vid });
-				var name    = field.attr('name') + '[]';
+				var name    = field.data('name') + '[]';
 				var item    = '<div class="thumbnail">' +
 								'<input type="hidden" name="'+name+'">' + 
 								'<div class="inner clearfix">' + 
@@ -120,6 +120,12 @@
 				initialize_field( $(this) );
 				
 			});
+		
+			if(typeof postbox.selector == 'undefined') {
+
+				$(postbox).find('.acf-youtubepicker .inner').empty();
+
+			}
 		
 		});
 	
