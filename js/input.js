@@ -7,7 +7,7 @@
 					
 			var self     = $(this);
 			var multiple = 1 === parseInt(self.data('multiple')||0, 10);
-			var holder   = $('#'+self.attr('id')+'-holder > .inner');
+			var holder   = self.closest('.acf-field-youtubepicker').find('.inner');
 			var input    = self.youtubepicker(
 								{'API_KEY' : self.data('api-key')}, 
 								self.data('options')||{}
@@ -21,7 +21,7 @@
 			input.on('itemSelected', function(e, data){
 				var field   = data.clone;
 				var current = JSON.stringify({ title : data.title, vid : data.vid });
-				var name    = field.data('name') + '[]';
+				var name    = field.attr('name') + '[]';
 				var item    = '<div class="thumbnail">' +
 								'<input type="hidden" name="'+name+'">' + 
 								'<div class="inner clearfix">' + 
