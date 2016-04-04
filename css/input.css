@@ -12,6 +12,10 @@
 	margin: 0;	
 	position: relative;
 	z-index: 1;
+	min-height: 140px;
+}
+
+.acf-youtubepicker .thumbnails.multiple {
 	min-height: 300px;
 }
 
