@@ -2,7 +2,13 @@ ACF YouTube Picker Field
 ================
 Search and select videos on YouTube without leaving the page.
 
-![ACF YouTube Picker Field](http://www.airesgoncalves.com.br/youtubepicker/acf-youtubepicker-v2.png)
+![ACF YouTube Picker Field](http://www.airesgoncalves.com.br/youtubepicker/acf-youtubepicker-v3.png)
+
+- [Compatibility](#compatibility)
+- [Installation](#installation)
+- [Retrieving data](#retrieving-data)
+- [Retrieving data - Single](#single)
+- [Retrieving data - Multiple](#multiple)
 
 Compatibility
 ================

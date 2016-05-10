@@ -1,38 +1,32 @@
-/* Based on acf-gallery */
 .acf-youtubepicker {
 	position: relative;
 	overflow: hidden;
 	border: #DFDFDF solid 1px;
-	border-radius: 0 0 3px 3px;
+	border-top: none;
 }
 
-.acf-youtubepicker .thumbnails {
-	background-color:#f9f9f9;
-	box-shadow: inset 0px 1px 5px rgba(0,0,0,0.06);
-	margin: 0;	
-	position: relative;
-	z-index: 1;
-	min-height: 300px;
+.acf-youtubepicker-field {
+	height: 30px !important;
+	padding: 20px 15px !important;
+	box-shadow: none !important;
 }
 
-.acf-youtubepicker .thumbnails .inner {
-	padding: 10px;
-	position: relative;
+.acf-youtubepicker {
+	background-color: #fff;
+}
+
+.acf-youtubepicker .thumbnails.multiple .thumbnail {
+	cursor: move;
 }
 
 .acf-youtubepicker .thumbnail {
 	margin: 10px;
 	position: relative;
 	float: left;
-	
-	background: #fff;
-	box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-	
-	cursor: move;
 }
 
 .acf-youtubepicker .thumbnail .inner {
-	padding: 5px;	
+	border: #DFDFDF solid 1px;
 }
 
 .acf-youtubepicker .thumbnail  img {
@@ -41,17 +35,16 @@
 
 .acf-youtubepicker .thumbnail.ui-sortable-placeholder {
 	visibility: visible !important;
-	background: transparent;
-	box-shadow: none;
-	border: #DFDFDF dashed 2px;
-	border-radius: 3px;
+	background: #F1F1F1;
 }
 
-.acf-youtubepicker .hover {
+.acf-youtubepicker .actions {
 	position: absolute;
-	top: -11px;
-	right: -11px;
-	
+	top: -9px;
+	right: -9px;	
+}
+
+.acf-youtubepicker .acf-soh-target {
 	-webkit-transition: opacity 0.25s 0s ease-in-out, visibility 0s linear 0.25s;
 	-moz-transition: opacity 0.25s 0s ease-in-out, visibility 0s linear 0.25s;
 	-o-transition: opacity 0.25s 0s ease-in-out, visibility 0s linear 0.25s; 	
@@ -61,26 +54,16 @@
 	opacity: 0;
 }
 
-.acf-youtubepicker .thumbnail:hover .hover {
+.acf-youtubepicker .thumbnail:hover .acf-soh-target {
 	-webkit-transition-delay:0s;
 	-moz-transition-delay:0s;
 	-o-transition-delay:0s;
 	transition-delay:0s;
-	
+
 	visibility: visible;
 	opacity: 1;
 }
 
-.acf-youtubepicker .hover ul {
-	display: block;
-	margin: 0;
-	padding: 0;
-}
-
-.acf-youtubepicker .hover ul li {
-	margin: 0 0 5px 0;
-}
-
-.acf-youtubepicker-field {
-	border-radius: 3px 3px 0 0;
+.youtubepicker-wrap {
+	height: 250px;
 }

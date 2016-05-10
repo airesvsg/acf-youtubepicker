@@ -1,0 +1,185 @@
+.youtubepicker-item:after, 
+.youtubepicker-actions:after {
+  content: "";
+  display: table;
+  clear: both; 
+}
+
+.youtubepicker {
+  position: absolute;
+  display: none;
+  z-index: 999; 
+}
+
+.youtubepicker * {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  text-decoration: none;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1;
+  box-sizing: border-box; 
+}
+
+.youtubepicker .nano > .nano-pane {
+  width: 8px; 
+}
+
+.youtubepicker-wrap {
+  position: relative;
+  border: 1px solid #CCC;
+  width: 400px;  
+}
+
+.youtubepicker-results {
+  height: 245px;
+  background: #FFF; 
+}
+
+.youtubepicker-item {
+  padding: 5px;
+  border-bottom: 1px solid #f2f2f2;
+  background: #FFF; 
+}
+
+.youtubepicker-item:hover {
+  background: #fafafa; 
+}
+
+.youtubepicker-thumbnail {
+  position: relative;
+  float: left;
+  width: 65px;
+  height: 49px;
+  border: 1px solid #CCC;
+  margin-right: 5px;
+  overflow: hidden; 
+}
+
+.youtubepicker-thumbnail img {
+  width: 100%; 
+}
+
+.youtubepicker-info {
+  display: inline;
+  float: left;
+  color: #8c8c8c;
+  width: 81%; 
+}
+
+.youtubepicker-info * {
+  font-size: 10px;
+  text-transform: uppercase; 
+}
+
+.youtubepicker-title,
+.youtubepicker-description {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+  border-bottom: 1px solid #CCC;
+  padding-bottom: 5px;
+  margin-bottom: 5px; 
+}
+
+.youtubepicker-description {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0; 
+}
+
+.youtubepicker-actions {
+  display: inline;
+  float: left;
+  margin-top: 2px; 
+}
+
+.youtubepicker-actions a {
+  text-transform: uppercase;
+  font-size: 10px;
+  background: #CCC;
+  color: #8c8c8c;
+  padding: 3px 10px;
+  display: inline-block;
+  margin-right: 5px; 
+}
+
+.youtubepicker-actions a:hover {
+  color: #f2f2f2;
+  background-color: #CC181E; 
+}
+
+.youtubepicker-loading .youtubepicker-loader {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  background-color: #FFF;
+  background-image: url(data:image/gif;base64,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);
+  background-repeat: no-repeat;
+  background-position: center center;
+  color: #8c8c8c;
+  width: 100%;
+  text-align: center;
+  font-size: 11px;
+  padding: 4px 0;
+  text-transform: uppercase;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden; 
+}
+
+.youtubepicker-loading .youtubepicker-content {
+  margin-bottom: 20px; 
+}
+
+.youtubepicker-loader {
+  display: none; 
+}
+
+.youtubepicker-no-records {
+  display: none;
+  padding: 5px;
+  text-align: center;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #8c8c8c; 
+}
+
+.youtubepicker-preview {
+  display: none; 
+}
+
+.youtubepicker-preview.show {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 247px;
+  top: 0;
+  left: 0;
+  background: #000; 
+}
+
+.youtubepicker-preview .youtubepicker-actions {
+  position: absolute;
+  float: none;
+  z-index: 99;
+  padding: 0;
+  right: 0;
+  bottom: -20px;
+  margin: 0;
+  cursor: pointer; 
+}
+
+.youtubepicker-preview .youtubepicker-actions a {
+  padding: 5px 10px;
+  margin: 0;
+  margin-left: 1px; 
+}
+
+.youtubepicker-player {
+  position: relative;
+  height: 100%; 
+}
