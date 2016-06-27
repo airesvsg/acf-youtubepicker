@@ -434,7 +434,13 @@ if ( ! class_exists( 'acf_field_youtubepicker' ) ) {
 		}
 
 		function format_value( $value, $post_id, $field ) {
-			return self::_format_value( $value, $post_id, $field );
+			if ( 5 == $this->settings['acf_version'] ) {
+				$format = 'api';
+			} else {
+				$format = null;
+			}
+
+			return self::_format_value( $value, $post_id, $field, $format );
 		}
 	
 		function format_value_for_api( $value, $post_id, $field ) {
