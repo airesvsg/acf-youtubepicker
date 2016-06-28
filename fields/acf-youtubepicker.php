@@ -374,7 +374,7 @@ if ( ! class_exists( 'acf_field_youtubepicker' ) ) {
 					<div class="thumbnail acf-soh">
 						<input type="hidden" name="<?php echo esc_attr( $field['name'] ); ?>[]" value="<?php echo esc_attr( json_encode( $v ) ); ?>">
 						<div class="inner clearfix">
-							<img src="http://i.ytimg.com/vi/<?php echo esc_attr( $v['vid'] ); ?>/default.jpg">
+							<img src="//i.ytimg.com/vi/<?php echo esc_attr( $v['vid'] ); ?>/default.jpg">
 						</div>
 						<div class="actions acf-soh-target">
 							<a href="#" class="acf-button-delete acf-icon -cancel dark"></a>
