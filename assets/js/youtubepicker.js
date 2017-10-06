@@ -1,5 +1,5 @@
 /*!
- * youtubepicker.js - v2.0.0 - 2016
+ * youtubepicker.js - v2.0.1 - 2016
  * http://github.com/airesvsg/youtubepicker
  * Copyright (c) 2016 Aires Goncalves;
  * Licensed MIT
@@ -16,7 +16,7 @@
 			self.$field  = $(elm);
 			self.id      = 'youtubepicker-' + (new Date().getTime());
 			self.options = $.extend({}, $.fn.youtubepicker.options, self.$field.data(), options);
-			
+
 			self.field_init();
 		},
 		field_init: function(){
@@ -24,10 +24,10 @@
 			var offset = {};
 
 			if(self.options.cloneField){
-				self.$clone = self.$field.clone(true);
+				self.clone = self.$field.clone(true);
 				self.$field.removeAttr('name');
-				self.$clone.insertAfter(self.$field);
-				self.$clone.hide()
+				self.clone.insertAfter(self.$field);
+				self.clone.hide()
 					.removeAttr('class id')
 					.addClass('youtubepicker-cloned-field');
 			}
@@ -88,8 +88,8 @@
 
 					var data = $(this).closest('.youtubepicker-item').data('youtubepicker-item-data');
 					if(self.options.cloneField){
-						self.$clone.val(data.vid);
-						data = $.extend({}, data, {clone: self.$clone, term: self.term});
+						self.clone.val(data.vid);
+						data = $.extend({}, data, {clone: self.clone, term: self.term});
 					}
 					self.$field.trigger('itemSelected', data);
 					self.$panel.hide();
@@ -189,7 +189,7 @@
 									'</div>' +
 								'</div>';
 			} else if(type === 'player'){
-				html = '<iframe type="text/html" width="100%" height="100%" src="http://www.youtube.com/embed/' + data.vid + '?autoplay=1&showsearch=0&iv_load_policy=3&fs=0&rel=0&loop=0" frameborder="0"/>';
+				html = '<iframe type="text/html" width="100%" height="100%" src="//www.youtube.com/embed/' + data.vid + '?autoplay=1&showsearch=0&iv_load_policy=3&fs=0&rel=0&loop=0" frameborder="0"/>';
 			}
 
 			return html;
