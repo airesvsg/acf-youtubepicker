@@ -3,7 +3,7 @@
 Plugin Name: Advanced Custom Fields: YouTube Picker
 Plugin URI: https://github.com/airesvsg/acf-youtubepicker
 Description: Search and select videos on YouTube without leaving the page
-Version: 3.2.0
+Version: 3.2.1
 Author: Aires Gonçalves
 Author URI: https://github.com/airesvsg
 License: GPLv2 or later
@@ -20,7 +20,7 @@ if( !class_exists( 'acf_plugin_youtubepicker' ) ) {
 		
 		function __construct() {	
 			$this->settings = array(
-				'version'  => '3.2.0',
+				'version'  => '3.2.1',
 				'url'      => plugin_dir_url( __FILE__ ),
 				'path'     => plugin_dir_path( __FILE__ ),
 			);

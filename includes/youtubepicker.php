@@ -18,7 +18,7 @@ if( ! class_exists( 'youtubepicker' ) ) {
 
 		public static function thumbs( $vid, $server = 'i1' ) {
 			if( $vid = self::is_vid( $vid ) ) {
-				$url = "http://%s.ytimg.com/vi/%s/%s.jpg";
+				$url = "https://%s.ytimg.com/vi/%s/%s.jpg";
 				return array(
 					'default' => array(
 						'url'    => sprintf( $url, $server, $vid, 'default' ),

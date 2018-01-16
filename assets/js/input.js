@@ -16,7 +16,7 @@
 				var item     = '<div class="thumbnail">' +
 								'<input type="hidden" name="' + name + '">' + 
 								'<div class="inner clearfix">' + 
-									'<img src="http://i.ytimg.com/vi/' + data.vid + '/default.jpg" alt="' + data.title + '">' + 
+									'<img src="https://i.ytimg.com/vi/' + data.vid + '/default.jpg" alt="' + data.title + '">' + 
 								'</div>' +
 								'<div class="acf-soh">'+
 									'<div class="actions acf-soh-target">' +

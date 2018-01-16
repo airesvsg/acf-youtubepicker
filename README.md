@@ -52,35 +52,35 @@ Array
       (
           [default] => Array
               (
-                  [url] => http://i1.ytimg.com/vi/Z00jjc-WtZI/default.jpg
+                  [url] => https://i1.ytimg.com/vi/Z00jjc-WtZI/default.jpg
                   [width] => 120
                   [height] => 90
               )
 
           [medium] => Array
               (
-                  [url] => http://i1.ytimg.com/vi/Z00jjc-WtZI/mqdefault.jpg
+                  [url] => https://i1.ytimg.com/vi/Z00jjc-WtZI/mqdefault.jpg
                   [width] => 320
                   [height] => 180
               )
 
           [high] => Array
               (
-                  [url] => http://i1.ytimg.com/vi/Z00jjc-WtZI/hqdefault.jpg
+                  [url] => https://i1.ytimg.com/vi/Z00jjc-WtZI/hqdefault.jpg
                   [width] => 480
                   [height] => 360
               )
 
           [standard] => Array
               (
-                  [url] => http://i1.ytimg.com/vi/Z00jjc-WtZI/sddefault.jpg
+                  [url] => https://i1.ytimg.com/vi/Z00jjc-WtZI/sddefault.jpg
                   [width] => 640
                   [height] => 480
               )
 
           [maximum] => Array
               (
-                  [url] => http://i1.ytimg.com/vi/Z00jjc-WtZI/maxresdefault.jpg
+                  [url] => https://i1.ytimg.com/vi/Z00jjc-WtZI/maxresdefault.jpg
                   [width] => 640
                   [height] => 480
               )
@@ -121,35 +121,35 @@ Array
             (
                 [default] => Array
                     (
-                        [url] => http://i1.ytimg.com/vi/Z00jjc-WtZI/default.jpg
+                        [url] => https://i1.ytimg.com/vi/Z00jjc-WtZI/default.jpg
                         [width] => 120
                         [height] => 90
                     )
 
                 [medium] => Array
                     (
-                        [url] => http://i1.ytimg.com/vi/Z00jjc-WtZI/mqdefault.jpg
+                        [url] => https://i1.ytimg.com/vi/Z00jjc-WtZI/mqdefault.jpg
                         [width] => 320
                         [height] => 180
                     )
 
                 [high] => Array
                     (
-                        [url] => http://i1.ytimg.com/vi/Z00jjc-WtZI/hqdefault.jpg
+                        [url] => https://i1.ytimg.com/vi/Z00jjc-WtZI/hqdefault.jpg
                         [width] => 480
                         [height] => 360
                     )
 
                 [standard] => Array
                     (
-                        [url] => http://i1.ytimg.com/vi/Z00jjc-WtZI/sddefault.jpg
+                        [url] => https://i1.ytimg.com/vi/Z00jjc-WtZI/sddefault.jpg
                         [width] => 640
                         [height] => 480
                     )
 
                 [maximum] => Array
                     (
-                        [url] => http://i1.ytimg.com/vi/Z00jjc-WtZI/maxresdefault.jpg
+                        [url] => https://i1.ytimg.com/vi/Z00jjc-WtZI/maxresdefault.jpg
                         [width] => 640
                         [height] => 480
                     )
