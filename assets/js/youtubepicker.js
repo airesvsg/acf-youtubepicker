@@ -23,15 +23,6 @@
 			var self   = this;
 			var offset = {};
 
-			if(self.options.cloneField){
-				self.clone = self.$field.clone(true);
-				self.$field.removeAttr('name');
-				self.clone.insertAfter(self.$field);
-				self.clone.hide()
-					.removeAttr('class id')
-					.addClass('youtubepicker-cloned-field');
-			}
-
 			$(self.template('panel')).insertAfter(self.$field);
 
 			self.$panel = $('#' + self.id);
@@ -87,10 +78,6 @@
 					e.preventDefault();
 
 					var data = $(this).closest('.youtubepicker-item').data('youtubepicker-item-data');
-					if(self.options.cloneField){
-						self.clone.val(data.vid);
-						data = $.extend({}, data, {clone: self.clone, term: self.term});
-					}
 					self.$field.trigger('itemSelected', data);
 					self.$panel.hide();
 				});
@@ -263,7 +250,6 @@
 		minChar: 3,
 		searchDelay: 2,
 		preview: true,
-		cloneField: true,
 		offset: {
 			x: 0, 
 			y: 0
